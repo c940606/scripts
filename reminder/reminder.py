@@ -4,7 +4,7 @@ from configparser import ConfigParser
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from urllib import request, parse
-
+import mistune
 
 def wechat_reminder(miao_code, text):
     page = request.urlopen(
@@ -28,6 +28,8 @@ def email_reminder(to_emails, subject, contents):
 
     # 把内容加进去
     msg.attach(MIMEText(contents, 'plain', 'utf-8'))
+    # markdown 转 html
+    
 
     # # 添加附件
     # att1 = MIMEText(open('result.xlsx', 'rb').read(), 'base64', 'utf-8')  # 打开附件
@@ -56,8 +58,8 @@ def email_reminder(to_emails, subject, contents):
     # 开始发送
     s.sendmail(my_email, to_emails, msg.as_string())
 
-if __name__ == '__main__':
-    # wechat_reminder("tSafTa1", "你好")
-    email_remain(["caiwei4@zte.com.cn", "762307667@qq.com"], "hello主题", "hello内容")
-    cfg = ConfigParser()
-    # print(cfg.get("personal_information", "my_email"))
+# if __name__ == '__main__':
+#     # wechat_reminder("tSafTa1", "你好")
+#     # email_remain(["caiwei4@zte.com.cn", "762307667@qq.com"], "hello主题", "hello内容")
+#     # cfg = ConfigParser()
+#     # print(cfg.get("personal_information", "my_email"))

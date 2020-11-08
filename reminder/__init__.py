@@ -1,0 +1,1 @@
+from reminder.reminder import wechat_reminder
